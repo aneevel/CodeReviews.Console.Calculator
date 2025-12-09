@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using CalculatorLibrary.Models;
 using Newtonsoft.Json;
 
 namespace CalculatorLibrary
@@ -6,8 +7,7 @@ namespace CalculatorLibrary
     public class Calculator
     {
         JsonWriter writer;
-        List<Calculation> operations = new();
-        int calculationsPerformed;
+        List<Calculation> calculations = new();
 
         public Calculator()
         {
@@ -61,8 +61,6 @@ namespace CalculatorLibrary
             writer.WriteValue(result);
             writer.WriteEndObject();
 
-            calculationsPerformed += 1;
-
             return result;
         }
 
@@ -72,7 +70,7 @@ namespace CalculatorLibrary
             writer.WriteEndObject();
             writer.Close();
 
-            Console.WriteLine($"Calculator performed {calculationsPerformed} calculation(s) on this run.");
+            Console.WriteLine($"Calculator performed {calculations.Count()} calculation(s) on this run.");
         }
 
         public void DisplayHistory()
