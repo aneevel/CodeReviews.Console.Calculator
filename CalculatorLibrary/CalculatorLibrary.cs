@@ -57,6 +57,9 @@ namespace CalculatorLibrary
                 default:
                     break;
             }
+
+            calculations.Add(new Calculation(num1, num2, result, op));
+
             writer.WritePropertyName("Result");
             writer.WriteValue(result);
             writer.WriteEndObject();
@@ -75,7 +78,16 @@ namespace CalculatorLibrary
 
         public void DisplayHistory()
         {
+            if (calculations.Count() == 0)
+            {
+                Console.WriteLine("No calculations performed!");
+                return;
+            }
 
+            for (int i = 0; i < calculations.Count(); i++)
+            {
+                Console.WriteLine($"#{i + 1}: {calculations[i]}");
+            }
         }
     }
 }
