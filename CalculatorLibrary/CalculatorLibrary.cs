@@ -6,6 +6,7 @@ namespace CalculatorLibrary
     public class Calculator
     {
         JsonWriter writer;
+        List<Calculation> operations = new();
         int calculationsPerformed;
 
         public Calculator()
@@ -72,6 +73,11 @@ namespace CalculatorLibrary
             writer.Close();
 
             Console.WriteLine($"Calculator performed {calculationsPerformed} calculation(s) on this run.");
+        }
+
+        public void DisplayHistory()
+        {
+
         }
     }
 }
