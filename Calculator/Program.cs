@@ -15,11 +15,11 @@ class Program
         {
             // Prompt for history display or calculation
             Console.WriteLine(
-                "Type \"h\" to see a history of calculations, or \"c\" to perform a calculation. Then press Enter."
+                "Type \"h\" to see a history of calculations, \"d\" to delete history, or \"c\" to perform a calculation. Then press Enter."
             );
 
             string? modeSelection = "";
-            while (modeSelection == null || !Regex.IsMatch(modeSelection, "[h|c]"))
+            while (modeSelection == null || !Regex.IsMatch(modeSelection, "[h|c|d]"))
             {
                 modeSelection = Console.ReadLine();
             }
@@ -27,6 +27,10 @@ class Program
             if (modeSelection == "h")
             {
                 calculator.DisplayHistory();
+            }
+            else if (modeSelection == "d")
+            {
+                calculator.ClearHistory();
             }
             else
             {

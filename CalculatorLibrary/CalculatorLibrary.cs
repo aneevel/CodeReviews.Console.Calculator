@@ -89,5 +89,11 @@ namespace CalculatorLibrary
                 Console.WriteLine($"#{i + 1}: {calculations[i]}");
             }
         }
+
+        public void ClearHistory()
+        {
+            calculations.Clear();
+            Console.WriteLine("History cleared.");
+        }
     }
 }
