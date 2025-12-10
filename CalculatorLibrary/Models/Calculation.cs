@@ -48,6 +48,10 @@
                     return "/";
                 case "p":
                     return "^";
+                case "max":
+                    return "is max or";
+                case "min":
+                    return "is min or";
                 default:
                     throw new System.ArgumentException("Invalid operator string provided!");
             }

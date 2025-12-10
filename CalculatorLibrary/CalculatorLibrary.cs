@@ -57,6 +57,14 @@ namespace CalculatorLibrary
                     result = Math.Pow(num1, num2);
                     writer.WriteValue("Power");
                     break;
+                case "max":
+                    result = Math.Max(num1, num2);
+                    writer.WriteValue("Max");
+                    break;
+                case "min":
+                    result = Math.Min(num1, num2);
+                    writer.WriteValue("Min");
+                    break;
                 // Return text for an incorrect option entry.
                 default:
                     break;
