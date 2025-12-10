@@ -46,12 +46,13 @@ class Program
                 Console.WriteLine("\ts - Subtract");
                 Console.WriteLine("\tm - Multiply");
                 Console.WriteLine("\td - Divide");
+                Console.WriteLine("\tp - Power");
                 Console.Write("Your option? ");
 
                 string? op = Console.ReadLine();
 
                 // Validate input is not null, and matches the pattern
-                if (op == null || !Regex.IsMatch(op, "[a|s|m|d]"))
+                if (op == null || !Regex.IsMatch(op, "[a|s|m|d|p]"))
                 {
                     Console.WriteLine("Error: Unrecognized input.");
                 }
@@ -71,6 +72,7 @@ class Program
                     }
                     catch (Exception e)
                     {
+                        Console.WriteLine(e);
                         Console.WriteLine(
                             "Oh no! An exception occurred trying to do the math.\n - Details: "
                                 + e.Message
@@ -131,7 +133,6 @@ class Program
                     Console.WriteLine("This is not valid input. Please enter a numeric value.");
                     continue;
                 }
-                Console.WriteLine("yessir");
                 return result;
             }
         }

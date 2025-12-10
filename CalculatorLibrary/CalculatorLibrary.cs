@@ -53,6 +53,10 @@ namespace CalculatorLibrary
                         writer.WriteValue("Division");
                     }
                     break;
+                case "p":
+                    result = Math.Pow(num1, num2);
+                    writer.WriteValue("Power");
+                    break;
                 // Return text for an incorrect option entry.
                 default:
                     break;

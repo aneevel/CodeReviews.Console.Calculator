@@ -46,6 +46,8 @@
                     return "*";
                 case "d":
                     return "/";
+                case "p":
+                    return "^";
                 default:
                     throw new System.ArgumentException("Invalid operator string provided!");
             }
