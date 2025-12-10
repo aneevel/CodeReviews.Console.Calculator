@@ -1,43 +1,53 @@
 ﻿namespace CalculatorLibrary.Models
 {
-    class Calculation
+    internal class Calculation
     {
-        double firstOperand;
-        double secondOperand;
-        double result;
-        string operatorPerformed;
+        double FirstOperand;
+        double SecondOperand;
+        double Result;
+        string OperatorPerformed;
 
-        public Calculation(double firstOperand, double secondOperand, double result, string operatorPerformed)
+        public Calculation(
+            double firstOperand,
+            double secondOperand,
+            double result,
+            string operatorPerformed
+        )
         {
-            this.firstOperand = firstOperand;
-            this.secondOperand = secondOperand;
-            this.result = result;
-            this.operatorPerformed = operatorPerformed;
+            this.FirstOperand = firstOperand;
+            this.SecondOperand = secondOperand;
+            this.Result = result;
+            this.OperatorPerformed = operatorPerformed;
         }
 
         public override string ToString()
         {
-            return $"{firstOperand} {CalculationExtensions.OperatorToSymbol(operatorPerformed)} {secondOperand} = {result}";
+            return $"{FirstOperand} {CalculationExtensions.OperatorToSymbol(OperatorPerformed)} {SecondOperand} = {Result}";
         }
 
-        class CalculationExtensions
+        public double GetResult()
         {
-            public static string OperatorToSymbol(string opcode)
-            {
-                switch (opcode)
-                {
-                    case "a":
-                        return "+";
-                    case "s":
-                        return "-";
-                    case "m":
-                        return "*";
-                    case "d":
-                        return "/";
-                    default:
-                        throw new System.ArgumentException("Invalid operator string provided!");
+            return Result;
+        }
 
-                }
+    }
+
+    class CalculationExtensions
+    {
+        public static string OperatorToSymbol(string opcode)
+        {
+            switch (opcode)
+            {
+                case "a":
+                    return "+";
+                case "s":
+                    return "-";
+                case "m":
+                    return "*";
+                case "d":
+                    return "/";
+                default:
+                    throw new System.ArgumentException("Invalid operator string provided!");
             }
         }
     }

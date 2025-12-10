@@ -34,33 +34,11 @@ class Program
             }
             else
             {
-                // Declare variables and set to empty.
-                // Use Nullable types (with ?) to match type of System.Console.ReadLine
-                string? numInput1 = "";
-                string? numInput2 = "";
-                double result = 0;
-
                 // Ask the user to type the first number.
-                Console.Write("Type a number, and then press Enter: ");
-                numInput1 = Console.ReadLine();
+                double firstOperand = GetOperandFromUser(calculator);
 
-                double cleanNum1 = 0;
-                while (!double.TryParse(numInput1, out cleanNum1))
-                {
-                    Console.Write("This is not valid input. Please enter a numeric value: ");
-                    numInput1 = Console.ReadLine();
-                }
-
-                // Ask the user to type the second number.
-                Console.Write("Type another number, and then press Enter: ");
-                numInput2 = Console.ReadLine();
-
-                double cleanNum2 = 0;
-                while (!double.TryParse(numInput2, out cleanNum2))
-                {
-                    Console.Write("This is not valid input. Please enter a numeric value: ");
-                    numInput2 = Console.ReadLine();
-                }
+                // Ask the user to type the second number
+                double secondOperand = GetOperandFromUser(calculator);
 
                 // Ask the user to choose an operator.
                 Console.WriteLine("Choose an operator from the following list:");
@@ -81,7 +59,7 @@ class Program
                 {
                     try
                     {
-                        result = calculator.DoOperation(cleanNum1, cleanNum2, op);
+                        double result = calculator.DoOperation(firstOperand, secondOperand, op);
                         if (double.IsNaN(result))
                         {
                             Console.WriteLine(
@@ -113,5 +91,49 @@ class Program
         }
         calculator.Finish();
         return;
+    }
+
+    static double GetOperandFromUser(Calculator calculator)
+    {
+        while (true)
+        {
+            Console.WriteLine(
+                "Type a number, and then press Enter. You can also type \"#number\" to use a result from your history: "
+            );
+            string? input = Console.ReadLine();
+
+            if (input != null && input.StartsWith('#'))
+            {
+                if (!Int32.TryParse(input[1..], out int index))
+                {
+                    Console.WriteLine(
+                        "Incorrect history format specified. Please use \"#number\"."
+                    );
+                    continue;
+                }
+                else
+                {
+                    // User will provide index with 1-based indexing, but we need 0-based
+                    if (!calculator.GetResultFromHistory(index - 1, out double result))
+                    {
+                        Console.WriteLine(
+                            "Given entry did not correspond to a history entry; please enter an existing entry index."
+                        );
+                        continue;
+                    }
+                    return result;
+                }
+            }
+            else
+            {
+                if (!double.TryParse(input, out double result))
+                {
+                    Console.WriteLine("This is not valid input. Please enter a numeric value.");
+                    continue;
+                }
+                Console.WriteLine("yessir");
+                return result;
+            }
+        }
     }
 }

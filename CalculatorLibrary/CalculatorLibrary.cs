@@ -95,5 +95,19 @@ namespace CalculatorLibrary
             calculations.Clear();
             Console.WriteLine("History cleared.");
         }
+
+        public bool GetResultFromHistory(int index, out double result)
+        {
+            if ((index < 0) || index >= calculations.Count())
+            {
+                result = 0;
+                return false;
+            }
+            else
+            {
+                result = calculations[index].GetResult();
+                return true;
+            }
+        }
     }
 }
